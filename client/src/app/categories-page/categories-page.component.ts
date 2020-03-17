@@ -10,7 +10,7 @@ import {Observable} from 'rxjs/index'
 })
 export class CategoriesPageComponent implements OnInit {
 
-  categories$: Observable<Category[]>
+  categories$: Observable<Category[]>;
 
   constructor(private categoriesService: CategoriesService) {
   }

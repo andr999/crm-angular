@@ -9,7 +9,7 @@ import {tap} from 'rxjs/operators'
 })
 export class AuthService {
 
-  private token = null
+  private token = null;
 
   constructor(private http: HttpClient) {
   }
@@ -23,7 +23,7 @@ export class AuthService {
       .pipe(
         tap(
           ({token}) => {
-            localStorage.setItem('auth-token', token)
+            localStorage.setItem('auth-token', token);
             this.setToken(token)
           }
         )
@@ -43,7 +43,7 @@ export class AuthService {
   }
 
   logout() {
-    this.setToken(null)
+    this.setToken(null);
     localStorage.clear()
   }
 }

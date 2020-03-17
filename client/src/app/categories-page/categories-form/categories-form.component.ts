@@ -14,12 +14,12 @@ import {Category} from '../../shared/interfaces'
 })
 export class CategoriesFormComponent implements OnInit {
 
-  @ViewChild('input') inputRef: ElementRef
-  form: FormGroup
-  image: File
-  imagePreview = ''
-  isNew = true
-  category: Category
+  @ViewChild('input') inputRef: ElementRef;
+  form: FormGroup;
+  image: File;
+  imagePreview = '';
+  isNew = true;
+  category: Category;
 
   constructor(private route: ActivatedRoute,
               private categoriesService: CategoriesService,
@@ -29,16 +29,16 @@ export class CategoriesFormComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup({
       name: new FormControl(null, Validators.required)
-    })
+    });
 
-    this.form.disable()
+    this.form.disable();
 
     this.route.params
       .pipe(
         switchMap(
           (params: Params) => {
             if (params['id']) {
-              this.isNew = false
+              this.isNew = false;
               return this.categoriesService.getById(params['id'])
             }
 
@@ -49,11 +49,11 @@ export class CategoriesFormComponent implements OnInit {
       .subscribe(
         (category: Category) => {
           if (category) {
-            this.category = category
+            this.category = category;
             this.form.patchValue({
               name: category.name
-            })
-            this.imagePreview = category.imageSrc
+            });
+            this.imagePreview = category.imageSrc;
             MaterialService.updateTextInputs()
           }
 
@@ -68,7 +68,7 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   deleteCategory() {
-    const decision = window.confirm(`Вы уверены, что хотите удалить категорию "${this.category.name}"`)
+    const decision = window.confirm(`Вы уверены, что хотите удалить категорию "${this.category.name}"`);
 
     if (decision) {
       this.categoriesService.delete(this.category._id)
@@ -81,21 +81,21 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   onFileUpload(event: any) {
-    const file = event.target.files[0]
-    this.image = file
+    const file = event.target.files[0];
+    this.image = file;
 
-    const reader = new FileReader()
+    const reader = new FileReader();
 
     reader.onload = () => {
       this.imagePreview = reader.result
-    }
+    };
 
     reader.readAsDataURL(file)
   }
 
   onSubmit() {
-    let obs$
-    this.form.disable()
+    let obs$;
+    this.form.disable();
 
     if (this.isNew) {
       obs$ = this.categoriesService.create(this.form.value.name, this.image)
@@ -105,12 +105,12 @@ export class CategoriesFormComponent implements OnInit {
 
     obs$.subscribe(
       category => {
-        this.category = category
-        MaterialService.toast('Изменения сохранены.')
+        this.category = category;
+        MaterialService.toast('Изменения сохранены.');
         this.form.enable()
       },
       error => {
-        MaterialService.toast(error.error.message)
+        MaterialService.toast(error.error.message);
         this.form.enable()
       }
     )

@@ -10,7 +10,7 @@ import {MaterialService} from '../../classes/material.service'
 })
 export class SiteLayoutComponent implements AfterViewInit {
 
-  @ViewChild('floating') floatingRef: ElementRef
+  @ViewChild('floating') floatingRef: ElementRef;
 
   links = [
     {url: '/overview', name: 'Обзор'},
@@ -18,7 +18,7 @@ export class SiteLayoutComponent implements AfterViewInit {
     {url: '/history', name: 'История'},
     {url: '/order', name: 'Добавить заказ'},
     {url: '/categories', name: 'Ассортимент'}
-  ]
+  ];
 
   constructor(private auth: AuthService,
               private router: Router) {
@@ -29,8 +29,8 @@ export class SiteLayoutComponent implements AfterViewInit {
   }
 
   logout(event: Event) {
-    event.preventDefault()
-    this.auth.logout()
+    event.preventDefault();
+    this.auth.logout();
     this.router.navigate(['/login'])
   }
 

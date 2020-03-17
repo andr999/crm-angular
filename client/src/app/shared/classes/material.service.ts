@@ -1,6 +1,6 @@
 import {ElementRef} from '@angular/core'
 
-declare var M
+declare var M;
 
 export interface MaterialInstance {
   open?(): void

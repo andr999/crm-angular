@@ -5,7 +5,7 @@ import {Subscription} from "rxjs";
 import {Filter, Order} from "../shared/interfaces";
 
 
-const STEP = 2
+const STEP = 2;
 
 @Component({
     selector: 'app-history-page',
@@ -14,23 +14,23 @@ const STEP = 2
 })
 export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
-    @ViewChild('tooltip') tooltipRef: ElementRef
-    tooltip: MaterialInstance
-    isFilterVisible = false
-    orders: Order[] = []
-    oSub: Subscription
-    offset = 0
-    limit = STEP
-    loading = false
-    reloading = false
-    noMoreOrders = false
-    filter: Filter = {}
+    @ViewChild('tooltip') tooltipRef: ElementRef;
+    tooltip: MaterialInstance;
+    isFilterVisible = false;
+    orders: Order[] = [];
+    oSub: Subscription;
+    offset = 0;
+    limit = STEP;
+    loading = false;
+    reloading = false;
+    noMoreOrders = false;
+    filter: Filter = {};
 
     constructor(private ordersService: OrdersService) {
     }
 
     ngOnInit() {
-        this.reloading = true
+        this.reloading = true;
         this.fetch()
     }
 
@@ -38,23 +38,23 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
         const params =  Object.assign({}, this.filter, {
             offset: this.offset,
             limit: this.limit
-    })
+    });
             this.oSub = this.ordersService.fetch(params).subscribe(orders => {
-             this.orders = this.orders.concat(orders)
-             this.noMoreOrders = orders.length < STEP
-             this.loading = false
+             this.orders = this.orders.concat(orders);
+             this.noMoreOrders = orders.length < STEP;
+             this.loading = false;
              this.reloading = false
         })
     }
 
     loadMore() {
-        this.offset += STEP
-        this.loading = true
+        this.offset += STEP;
+        this.loading = true;
         this.fetch()
     }
 
     ngOnDestroy() {
-       this.tooltip.destroy()
+       this.tooltip.destroy();
         this.oSub.unsubscribe()
     }
 
@@ -63,10 +63,10 @@ export class HistoryPageComponent implements OnInit, OnDestroy, AfterViewInit {
     }
 
     applyFilter(filter: Filter) {
-        this.orders = []
-        this.offset = 0
-        this.filter =  filter
-        this.reloading = true
+        this.orders = [];
+        this.offset = 0;
+        this.filter =  filter;
+        this.reloading = true;
         this.fetch()
     }
 

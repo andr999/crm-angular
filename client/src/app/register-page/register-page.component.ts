@@ -12,8 +12,8 @@ import {MaterialService} from '../shared/classes/material.service'
 })
 export class RegisterPageComponent implements OnInit, OnDestroy {
 
-  form: FormGroup
-  aSub: Subscription
+  form: FormGroup;
+  aSub: Subscription;
 
   constructor(private auth: AuthService,
               private router: Router) {
@@ -33,7 +33,7 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.form.disable()
+    this.form.disable();
     this.aSub = this.auth.register(this.form.value).subscribe(
       () => {
         this.router.navigate(['/login'], {
@@ -43,7 +43,7 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
         })
       },
       error => {
-        MaterialService.toast(error.error.message)
+        MaterialService.toast(error.error.message);
         this.form.enable()
       }
     )

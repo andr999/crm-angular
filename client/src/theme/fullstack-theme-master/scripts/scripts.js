@@ -1,14 +1,14 @@
-const $ = selector => document.querySelector(selector)
-const $$ = selector => document.querySelectorAll(selector)
+const $ = selector => document.querySelector(selector);
+const $$ = selector => document.querySelectorAll(selector);
 
-M.FloatingActionButton.init($('.fixed-action-btn'))
+M.FloatingActionButton.init($('.fixed-action-btn'));
 
-const $tt = $('.tap-target')
-const $modal = $('.modal')
-const $ttp = $('.tooltipped')
+const $tt = $('.tap-target');
+const $modal = $('.modal');
+const $ttp = $('.tooltipped');
 
 if ($tt) {
-  const tapTarget = M.TapTarget.init($tt)
+  const tapTarget = M.TapTarget.init($tt);
   $('#dashboard-info').addEventListener('click', function() {
     tapTarget.open()
   })
@@ -25,11 +25,11 @@ if ($('.datepicker')) {
   })
 }
 
-const $filter = $('.js-filter')
+const $filter = $('.js-filter');
 
 if ($filter) {
   $filter.addEventListener('click', function() {
-    $filter.classList.toggle('active')
+    $filter.classList.toggle('active');
     $('.js-filter-block').classList.toggle('hide')
   })
 }

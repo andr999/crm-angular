@@ -14,7 +14,7 @@ import {MaterialService} from '../../shared/classes/material.service'
 })
 export class OrderPositionsComponent implements OnInit {
 
-  positions$: Observable<Position[]>
+  positions$: Observable<Position[]>;
 
   constructor(private route: ActivatedRoute,
               private positionsService: PositionsService,
@@ -32,7 +32,7 @@ export class OrderPositionsComponent implements OnInit {
         map(
           (positions: Position[]) => {
             return positions.map(position => {
-              position.quantity = 1
+              position.quantity = 1;
               return position
             })
           }
@@ -41,7 +41,7 @@ export class OrderPositionsComponent implements OnInit {
   }
 
   addToOrder(position: Position) {
-    MaterialService.toast(`Добавлено х${position.quantity}`)
+    MaterialService.toast(`Добавлено х${position.quantity}`);
     this.order.add(position)
   }
 

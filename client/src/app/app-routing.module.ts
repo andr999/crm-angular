@@ -36,7 +36,7 @@ const routes: Routes = [
       {path: 'categories/:id', component: CategoriesFormComponent}
     ]
   }
-]
+];
 
 @NgModule({
   imports: [

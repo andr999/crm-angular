@@ -14,11 +14,11 @@ import {Subscription}  from 'rxjs'
 })
 export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  @ViewChild('modal') modalRef: ElementRef
-  modal: MaterialInstance
-  isRoot: boolean
-  pending = false
-  oSub: Subscription
+  @ViewChild('modal') modalRef: ElementRef;
+  modal: MaterialInstance;
+  isRoot: boolean;
+  pending = false;
+  oSub: Subscription;
 
   constructor(private router: Router,
               private order: OrderService,
@@ -27,7 +27,7 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
-    this.isRoot = this.router.url === '/order'
+    this.isRoot = this.router.url === '/order';
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.isRoot = this.router.url === '/order'
@@ -36,7 +36,7 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy() {
-    this.modal.destroy()
+    this.modal.destroy();
     if(this.oSub){
       this.oSub.unsubscribe()
     }
@@ -59,21 +59,21 @@ export class OrderPageComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   submit() {
-      this.pending = true
+      this.pending = true;
       const order: Order = {
       list: this.order.list.map(item => {
-        delete item._id
+        delete item._id;
         return item
       })
-    }
+    };
     this.oSub = this.ordersService.create(order).subscribe(
           newOrder => {
-             MaterialService.toast(`Заказ №${newOrder.order} был  добавлен`)
+             MaterialService.toast(`Заказ №${newOrder.order} был  добавлен`);
              this.order.clear()
           },
           error => {MaterialService.toast(error.error.message)},
           () => {
-            this.modal.close()
+            this.modal.close();
             this.pending = false
           }
       )

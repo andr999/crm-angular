@@ -11,15 +11,15 @@ import {MaterialInstance, MaterialService} from "../shared/classes/material.serv
 })
 export class OverviewPageComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  @ViewChild('tapTarget') tapTargetRef: ElementRef
-  tapTarget: MaterialInstance
-  data$: Observable<OverviewPage>
-  yesterday = new Date()
+  @ViewChild('tapTarget') tapTargetRef: ElementRef;
+  tapTarget: MaterialInstance;
+  data$: Observable<OverviewPage>;
+  yesterday = new Date();
 
   constructor(private service: AnalyticsService) { }
 
   ngOnInit() {
-    this.data$ = this.service.getOverview()
+    this.data$ = this.service.getOverview();
     this.yesterday.setDate(this.yesterday.getDate() -1)
   }
 
